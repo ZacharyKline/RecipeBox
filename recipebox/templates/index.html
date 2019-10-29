@@ -1,0 +1,12 @@
+<h1>Welcome to your Recipe Box!</h1>
+<h2>Recipes:</h2>
+
+<ul>
+    {% for item in data %}
+    <h3>
+        <a href='recipes/{{item.id}}/'>{{ item.title }}</a>, by <a
+            href='authors/{{item.author.id}}'>{{ item.author }}</a>
+    </h3>
+
+    {% endfor %}
+</ul>

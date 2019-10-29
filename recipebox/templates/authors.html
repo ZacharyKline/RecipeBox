@@ -1,0 +1,24 @@
+<a href='/'>Home</a>
+{% for item in data %}
+
+<h2>{{ item.name }}</h2>
+<div>
+    <h3>Bio: </h3>
+    {{ item.bio}}
+</div>
+
+{% endfor %}
+<h3>
+    Recipes:
+
+</h3>
+
+{% for recip in recipes %}
+<div>
+    <ul>
+        <li><a href='/recipes/{{recip.id}}'>{{recip.title}}</a></li>
+    </ul>
+</div>
+
+
+{% endfor %}
