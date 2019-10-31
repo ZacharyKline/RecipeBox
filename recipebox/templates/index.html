@@ -1,15 +1,23 @@
 {% load static %}
-<h1>Welcome to your Recipe Box!</h1>
-<a href='addauthor'>Add an Author</a>
-<a href='addrecipe'>Add a Recipe</a>
-<h2>Recipes:</h2>
+<link rel='stylesheet' href='static/styles.css'>
+<div class='fullback'></div>
+<br>
+<br>
+<div id='content'>
+    <h1 class='headers'>Welcome to your Recipe Box!</h1>
+    <div>
+        <a class='links' href='addauthor'>Add an Author</a>
+        <a class='links' href='addrecipe'>Add a Recipe</a>
+    </div>
+    <h2 class='headers'>Recipes:</h2>
 
-<ul>
-    {% for item in data %}
-    <h3>
-        <a href='recipes/{{item.id}}/'>{{ item.title }}</a>, by <a
-            href='authors/{{item.author.id}}'>{{ item.author }}</a>
-    </h3>
+    <ul>
+        {% for item in data %}
+        <h3 class='recipes'>
+            <a href='recipes/{{item.id}}/'>{{ item.title }}</a>, by <a
+                href='authors/{{item.author.id}}'>{{ item.author }}</a>
+        </h3>
 
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
+</div>

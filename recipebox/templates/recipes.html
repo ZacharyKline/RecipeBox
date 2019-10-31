@@ -1,3 +1,6 @@
+{% load static %}
+<link rel='stylesheet' href='/static/styles.css'>
+
 <a href='/'>Home</a>
 {% for item in data %}
 <h3>{{ item.title }}, by <a href='/authors/{{item.author.id}}'>{{ item.author }}</a></h3>

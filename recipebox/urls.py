@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from recipebox import views
 from recipebox.models import Author, Recipe
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.site.register(Author)
 admin.site.register(Recipe)
@@ -29,3 +31,7 @@ urlpatterns = [
     path('addrecipe/', views.recipeaddview, name='recipe_add_page'),
     path('addauthor/', views.authoraddview, name='author_add_page')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
