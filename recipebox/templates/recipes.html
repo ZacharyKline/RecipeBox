@@ -2,22 +2,27 @@
 <link rel='stylesheet' href='/static/styles.css'>
 
 <a href='/'>Home</a>
-{% for item in data %}
-<h3>{{ item.title }}, by <a href='/authors/{{item.author.id}}'>{{ item.author }}</a></h3>
-<br>
-<div>
-    <h3>Description:</h3> {{ item.description }}
-</div>
-<br>
-<div>
-    <h3>Time Required:</h3> {{ item.time_req }}
-</div>
-<br>
-<div>
-    <h3>Instructions:</h3> {{ item.instructions}}
-</div>
+<div class='content'>
+    {% for item in data %}
+    <h3 class='links'>{{ item.title }}, by <a class='links' href='/authors/{{item.author.id}}'>{{ item.author }}</a>
+    </h3>
+    <br>
+    <div>
+        <h3 class='links'>Description:</h3>
+        <div class='textBody'>{{ item.description }}</div>
+    </div>
+    <br>
+    <div>
+        <h3 class='links'>Time Required:</h3>
+        <div class='textBody'>{{ item.time_req }}</div>
+    </div>
+    <br>
+    <div>
+        <h3 class='links'>Instructions:</h3>
+        <div class='textBody'>{{ item.instructions}}</div>
+    </div>
 
-{% endfor %}
-<br>
-<br>
-<a href='/'>Home</a>
+    {% endfor %}
+    <br>
+    <br>
+</div>

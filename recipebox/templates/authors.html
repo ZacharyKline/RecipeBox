@@ -1,14 +1,14 @@
 {% load static %}
 <link rel='stylesheet' href='/static/styles.css'>
 
+<a href='/'>Home</a>
 <div class='content'>
-    <a href='/'>Home</a>
     {% for item in data %}
 
     <h2 class='headers'>{{ item.name }}</h2>
     <div>
         <h3>Bio: </h3>
-        {{ item.bio}}
+        <div class='textBody'>{{ item.bio}}</div>
     </div>
 
     {% endfor %}
@@ -18,7 +18,7 @@
     </h3>
 
     {% for recip in recipes %}
-    <div>
+    <div class='textBody'>
         <ul>
             <li><a class='links' href='/recipes/{{recip.id}}'>{{recip.title}}</a></li>
         </ul>

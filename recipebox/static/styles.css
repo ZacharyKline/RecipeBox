@@ -7,10 +7,25 @@ body {
     margin-left: 5%;
 }
 
+.righty {
+  text-align: right;
+
+}
+
+.textBody{
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(83, 90, 94);
+}
 
 .headers {
     text-shadow: 2px 2px lightgrey;
 
+}
+.button {
+  border: 2px solid rgba(0, 0, 0, 0.139);
+  background: rgba(211, 211, 211, 0.297);
+  margin: 5px;
 }
 
 .links {
