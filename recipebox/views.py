@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-from recipebox.forms import RecipeItemAdd, AuthorAdd, LoginForm
+from recipebox.forms import RecipeItemAdd, AuthorAdd, LoginForm, StaffRecipeAdd
 from recipebox.models import Recipe, Author
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -48,6 +48,20 @@ def authoraddview(request):
 
         form = AuthorAdd()
         return render(request, html, {'form': form})
+    return HttpResponseRedirect('/error')
+
+
+@login_required
+def staffrecipeview(request):
+    html = 'generic_add.html'
+    if request.user.is_staff:
+        author = Recipe.objects.all()
+        if request.method == 'POST':
+            form = StaffRecipeAdd(request.POST)
+            form.save()
+            return HttpResponseRedirect(reverse('homepage'))
+        form = StaffRecipeAdd()
+        return render(request, html, {'form': form, 'authors': author})
     return HttpResponseRedirect('/error')
 
 

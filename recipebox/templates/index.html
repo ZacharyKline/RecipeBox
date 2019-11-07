@@ -4,11 +4,19 @@
 <br>
 <br>
 <div id='content'>
+    {% if request.user.is_active %}
+    <h2 class='righty'><a class='button' href='logout/'>Logout Here</a></h2>
+    {% else %}
     <h2 class='righty'><a class='button' href='login/'>Login Here</a></h2>
+    {% endif %}
     <h1 class='headers'>Welcome to your Recipe Box!</h1>
     <div>
         <a class='links' href='addauthor'>Add an Author</a>
+        {% if request.user.is_active and request.user.is_staff %}
+        <a class='links' href='staffrecipeadd'>Add a Recipe</a>
+        {% else %}
         <a class='links' href='addrecipe'>Add a Recipe</a>
+        {% endif %}
     </div>
     <h2 class='headers'>Recipes:</h2>
 
