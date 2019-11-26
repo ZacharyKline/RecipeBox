@@ -8,4 +8,5 @@ I also added an error page when you try to access the author add page without be
 Admin users can edit all recipies.
 Regular users can edit their own recipes.
 
-Authors can favorite and unfavorite recipes and view a list of thier favorites.
+Authors can favorite and unfavorite recipes.
+A users favorites is linked through the user detail page.
