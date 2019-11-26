@@ -143,7 +143,7 @@ def loginview(request):
 
 def logoutview(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login_page'))
+    return HttpResponseRedirect(reverse('homepage'))
 
 
 def errorpage(request):
