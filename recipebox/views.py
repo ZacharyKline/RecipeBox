@@ -11,16 +11,20 @@ def index(request):
     html = 'index.html'
     recipes = Recipe.objects.all()
     user_is_admin = request.user.is_staff
+    author = None
+    if request.user.is_authenticated:
+        author = Author.objects.get(user=request.user)
     return render(request, html, {
         'data': recipes,
-        'user_is_admin': user_is_admin})
+        'user_is_admin': user_is_admin,
+        'author': author})
 
 
 def recipe_view(request, id):
     recipe_html = 'recipes.html'
     recipe = Recipe.objects.filter(pk=id)
     user = request.user
-
+    is_logged_in = user.is_authenticated
     is_admin = user.is_staff
     user_is_author = False
     is_fav = False
@@ -35,7 +39,8 @@ def recipe_view(request, id):
         'is_admin': is_admin,
         'logged_in_is_author': user_is_author,
         'user': user,
-        'is_fav': is_fav
+        'is_fav': is_fav,
+        'is_logged_in': is_logged_in
     })
 
 
@@ -46,6 +51,7 @@ def author_view(request, id):
 
     return render(request, author_html, {
         'data': author,
+        'author': author[0],
         'recipes': recipes,
     })
 
@@ -151,16 +157,14 @@ def errorpage(request):
     return render(request, html)
 
 
-@login_required
-def my_favorites_view(request):
+def my_favorites_view(request, id):
     html = 'favorites.html'
-    user = request.user
-    if user.is_staff:
-        HttpResponseRedirect(reverse('homepage'))
-    author = Author.objects.get(user=user)
+    author = Author.objects.get(pk=id)
     my_favorites = author.favorites.all()
 
-    return render(request, html, {'my_favorites': my_favorites})
+    return render(request, html, {
+        'my_favorites': my_favorites,
+        'author': author})
 
 
 @login_required

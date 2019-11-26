@@ -16,8 +16,8 @@
     <a class="links" href="staffrecipeadd">Add a Recipe</a>
     {% else %}
     <a class="links" href="addrecipe">Add a Recipe</a>
-    {% endif %} {% if not user_is_admin %}
-    <a class="links" href="/myfavorites/">My Favorites</a>
+    {% endif %} {% if not user_is_admin or author %}
+    <!-- <a class="links" href="/myfavorites/{{author.id}}">My Favorites</a> -->
     {% endif %}
   </div>
   <h2 class="headers">Recipes:</h2>
