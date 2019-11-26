@@ -1,28 +1,36 @@
 {% load static %}
-<link rel='stylesheet' href='/static/styles.css'>
+<link rel="stylesheet" href="/static/styles.css" />
 
-<a href='/'>Home</a>
-<div class='content'>
-    {% for item in data %}
-    <h3 class='links'>{{ item.title }}, by <a class='links' href='/authors/{{item.author.id}}'>{{ item.author }}</a>
-    </h3>
-    <br>
-    <div>
-        <h3 class='links'>Description:</h3>
-        <div class='textBody'>{{ item.description }}</div>
-    </div>
-    <br>
-    <div>
-        <h3 class='links'>Time Required:</h3>
-        <div class='textBody'>{{ item.time_req }}</div>
-    </div>
-    <br>
-    <div>
-        <h3 class='links'>Instructions:</h3>
-        <div class='textBody'>{{ item.instructions}}</div>
-    </div>
-
-    {% endfor %}
-    <br>
-    <br>
+<a href="/">Home</a>
+<div class="content">
+  {% for item in data %}
+  <h3 class="links">
+    {{ item.title }}, by
+    <a class="links" href="/authors/{{item.author.id}}">{{ item.author }}</a>
+  </h3>
+  <br />
+  <div>
+    <h3 class="links">Description:</h3>
+    <div class="textBody">{{ item.description }}</div>
+  </div>
+  <br />
+  <div>
+    <h3 class="links">Time Required:</h3>
+    <div class="textBody">{{ item.time_req }}</div>
+  </div>
+  <br />
+  <div>
+    <h3 class="links">Instructions:</h3>
+    <div class="textBody">{{ item.instructions}}</div>
+  </div>
+  <br />
+  {% if is_admin or logged_in_is_author %}
+  <a href="/edit/{{item.id}}">Edit Recipe</a>
+  {% endif %} {% if is_logged_in %} {% if is_fav %}
+  <a href="/removefromfavorites/{{item.id}}">Remove from Favorites</a>
+  {% else %} {% if not is_admin %}
+  <a href="/addtofavorites/{{item.id}}">Add to Favorites</a>
+  {% endif %} {% endif %} {% endif %} {% endfor %}
+  <br />
+  <br />
 </div>

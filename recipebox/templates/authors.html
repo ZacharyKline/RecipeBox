@@ -1,29 +1,28 @@
 {% load static %}
-<link rel='stylesheet' href='/static/styles.css'>
+<link rel="stylesheet" href="/static/styles.css" />
 
-<a href='/'>Home</a>
-<div class='content'>
-    {% for item in data %}
+<a href="/">Home</a>
+<a href="/myfavorites/{{author.id}}">Favorites</a>
+<div class="content">
+  {% for item in data %}
 
-    <h2 class='headers'>{{ item.name }}</h2>
-    <div>
-        <h3>Bio: </h3>
-        <div class='textBody'>{{ item.bio}}</div>
-    </div>
+  <h2 class="headers">{{ item.name }}</h2>
+  <div>
+    <h3>Bio:</h3>
+    <div class="textBody">{{ item.bio}}</div>
+  </div>
 
-    {% endfor %}
-    <h3>
-        Recipes:
+  {% endfor %}
+  <h3>
+    Recipes:
+  </h3>
 
-    </h3>
+  {% for recip in recipes %}
+  <div class="textBody">
+    <ul>
+      <li><a class="links" href="/recipes/{{recip.id}}">{{recip.title}}</a></li>
+    </ul>
+  </div>
 
-    {% for recip in recipes %}
-    <div class='textBody'>
-        <ul>
-            <li><a class='links' href='/recipes/{{recip.id}}'>{{recip.title}}</a></li>
-        </ul>
-    </div>
-
-
-    {% endfor %}
+  {% endfor %}
 </div>

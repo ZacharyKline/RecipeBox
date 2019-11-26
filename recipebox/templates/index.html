@@ -1,32 +1,34 @@
 {% load static %}
-<link rel='stylesheet' href='static/styles.css'>
-<div class='fullback'></div>
-<br>
-<br>
-<div id='content'>
-    {% if request.user.is_active %}
-    <h2 class='righty'><a class='button' href='logout/'>Logout Here</a></h2>
+<link rel="stylesheet" href="static/styles.css" />
+<div class="fullback"></div>
+<br />
+<br />
+<div id="content">
+  {% if request.user.is_active %}
+  <h2 class="righty"><a class="button" href="logout/">Logout Here</a></h2>
+  {% else %}
+  <h2 class="righty"><a class="button" href="login/">Login Here</a></h2>
+  {% endif %}
+  <h1 class="headers">Welcome to your Recipe Box!</h1>
+  <div>
+    <a class="links" href="addauthor">Add an Author</a>
+    {% if request.user.is_active and request.user.is_staff %}
+    <a class="links" href="staffrecipeadd">Add a Recipe</a>
     {% else %}
-    <h2 class='righty'><a class='button' href='login/'>Login Here</a></h2>
+    <a class="links" href="addrecipe">Add a Recipe</a>
+    {% endif %} {% if not user_is_admin or author %}
+    <!-- <a class="links" href="/myfavorites/{{author.id}}">My Favorites</a> -->
     {% endif %}
-    <h1 class='headers'>Welcome to your Recipe Box!</h1>
-    <div>
-        <a class='links' href='addauthor'>Add an Author</a>
-        {% if request.user.is_active and request.user.is_staff %}
-        <a class='links' href='staffrecipeadd'>Add a Recipe</a>
-        {% else %}
-        <a class='links' href='addrecipe'>Add a Recipe</a>
-        {% endif %}
-    </div>
-    <h2 class='headers'>Recipes:</h2>
+  </div>
+  <h2 class="headers">Recipes:</h2>
 
-    <ul>
-        {% for item in data %}
-        <h3 class='recipes'>
-            <a href='recipes/{{item.id}}/'>{{ item.title }}</a>, by <a
-                href='authors/{{item.author.id}}'>{{ item.author }}</a>
-        </h3>
+  <ul>
+    {% for item in data %}
+    <h3 class="recipes">
+      <a href="recipes/{{item.id}}">{{ item.title }}</a>, by
+      <a href="authors/{{item.author.id}}">{{ item.author }}</a>
+    </h3>
 
-        {% endfor %}
-    </ul>
+    {% endfor %}
+  </ul>
 </div>
