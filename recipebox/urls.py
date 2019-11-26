@@ -34,7 +34,11 @@ urlpatterns = [
     path('logout/', views.logoutview, name='logout_page'),
     path('error/', views.errorpage, name='error_page'),
     path('staffrecipeadd/', views.staffrecipeview,
-         name='staff_recipe_add_page')
+         name='staff_recipe_add_page'),
+    path('edit/<int:id>', views.edit_recipe, name='edit'),
+    path('myfavorites/', views.my_favorites_view, name='myfavorites'),
+    path('addtofavorites/<int:id>', views.add_favorite),
+    path('removefromfavorites/<int:id>', views.remove_favorite)
 ]
 
 if settings.DEBUG:

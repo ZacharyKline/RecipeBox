@@ -15,6 +15,9 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     bio = models.TextField(blank=True, null=True)
+    favorites = models.ManyToManyField(
+        'Recipe', related_name='favorites', blank=True, symmetrical=False
+    )
 
     def __str__(self):
         return f'{self.name}'
